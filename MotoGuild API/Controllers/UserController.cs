@@ -34,13 +34,21 @@ public class UserController : ControllerBase
         var users = _userRepository.GetAll();
         return Ok(_mapper.Map<List<UserDto>>(users));
     }
-
+   
     [HttpGet("{id:int}", Name = "GetUser")]
-    public IActionResult GetUser(int id, [FromQuery] bool selectedData = false)
+    public IActionResult GetUser(int id, [FromQuery] bool profile = false)
     {
         var user = _userRepository.Get(id);
-        if (user == null) return NotFound();
-        return Ok(_mapper.Map<UserDto>(user));
+        if (!profile)
+        {
+            if (user == null) return NotFound();
+            return Ok(_mapper.Map<UserDto>(user));
+        }
+        else
+        {
+            if (user == null) return NotFound();
+            return Ok(_mapper.Map<UserProfileDto>(user));
+        }
     }
 
     [HttpPost("register")]
