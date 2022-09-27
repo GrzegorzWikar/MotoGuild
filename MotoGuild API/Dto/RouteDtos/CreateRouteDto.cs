@@ -13,4 +13,5 @@ public class CreateRouteDto
     public UserDto Owner { get; set; }
 
     public List<CreateStopDto> Stops { get; set; }
+
 }
