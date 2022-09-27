@@ -65,4 +65,6 @@ public class EventController : ControllerBase
         _eventRepository.Save();
         return NoContent();
     }
+
+
 }
