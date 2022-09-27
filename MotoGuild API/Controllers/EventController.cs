@@ -14,12 +14,15 @@ public class EventController : ControllerBase
 {
     private readonly IEventRepository _eventRepository;
     private readonly IMapper _mapper;
+    private readonly ILoggedUserRepository _loggedUserRepository;
 
-    public EventController(IEventRepository eventRepository, IMapper mapper)
+    public EventController(IEventRepository eventRepository, IMapper mapper, ILoggedUserRepository loggedUserRepository)
     {
         _eventRepository = eventRepository;
         _mapper = mapper;
+        _loggedUserRepository = loggedUserRepository;
     }
+
 
     [HttpGet]
     public IActionResult GetEvents([FromQuery] PaginationParams @params)
@@ -43,6 +46,7 @@ public class EventController : ControllerBase
     [HttpPost]
     public IActionResult CreateEvent([FromBody] CreateEventDto createEventDto)
     {
+        var userName = _loggedUserRepository.GetLoggedUserName();
         var eve = _mapper.Map<Event>(createEventDto);
         _eventRepository.Insert(eve);
         _eventRepository.Save();
@@ -70,4 +74,6 @@ public class EventController : ControllerBase
         _eventRepository.Save();
         return NoContent();
     }
+
+
 }
