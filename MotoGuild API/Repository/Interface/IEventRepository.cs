@@ -1,10 +1,12 @@
 ﻿using Domain;
+using MotoGuild_API.Helpers;
 
 namespace MotoGuild_API.Repository.Interface;
 
 public interface IEventRepository : IDisposable
 {
-    IEnumerable<Event> GetAll();
+    int TotalNumberOfEvents();
+    IEnumerable<Event> GetAll(PaginationParams @params);
     Event Get(int eveId);
     void Insert(Event eve);
     void Delete(int eveId);

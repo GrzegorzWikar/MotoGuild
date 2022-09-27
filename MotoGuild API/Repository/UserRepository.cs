@@ -24,7 +24,16 @@ public class UserRepository : IUserRepository
 
     public User Get(int userId)
     {
-        return _context.Users.Find(userId);
+        return _context.Users
+            .Include(u => u.Groups).ThenInclude(g => g.Owner)
+            .Include(u => u.OwnedGroups).ThenInclude(g => g.Owner)
+            .Include(u => u.PendingGroups).ThenInclude(g => g.Owner)
+            .Include(u => u.Events).ThenInclude(e => e.Owner)
+            .Include(u => u.OwnedEvents).ThenInclude(e => e.Owner)
+            .Include(u => u.Rides).ThenInclude(r => r.Owner)
+            .Include(u => u.OwnedRides).ThenInclude(r => r.Owner)
+            .Include(u => u.Routes).ThenInclude(r => r.Stops)
+            .FirstOrDefault(u => u.Id == userId);
     }
 
     public bool UserNameExist(string name)
