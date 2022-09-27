@@ -76,4 +76,5 @@ public class EventRepository : IEventRepository
                 _context.Dispose();
         disposed = true;
     }
+
 }
