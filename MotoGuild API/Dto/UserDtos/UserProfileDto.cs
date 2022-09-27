@@ -12,6 +12,7 @@ namespace MotoGuild_API.Dto.UserDtos
         public string Email { get; set; }
         public int? PhoneNumber { get; set; }
         public double Rating { get; set; }
+        public string Image { get; set; }
         public ICollection<GroupUserProfilDto> Groups { get; set; }
         public ICollection<GroupUserProfilDto> OwnedGroups { get; set; }
         public ICollection<GroupUserProfilDto> PendingGroups { get; set; }

@@ -13,6 +13,7 @@
         public DateTime TokenExpires { get; set; }
         public int? PhoneNumber { get; set; }
         public double Rating { get; set; }
+        public string? Image {get; set;}
         public ICollection<Group> Groups { get; set; } 
         public ICollection<Group> OwnedGroups { get; set; } 
         public ICollection<Group> PendingGroups { get; set; } 
