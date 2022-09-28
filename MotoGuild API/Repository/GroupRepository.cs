@@ -44,9 +44,9 @@ public class GroupRepository : IGroupRepository
             .FirstOrDefault(g => g.Id == id);
     }
 
-    public void Insert(Group group)
+    public void Insert(Group group, string userName)
     {
-        var ownerFull = _context.Users.FirstOrDefault(u => u.Id == group.Owner.Id);
+        var ownerFull = _context.Users.FirstOrDefault(u => u.UserName == userName);
         group.Owner = ownerFull;
         _context.Groups.Add(group);
         group.Participants.Add(group.Owner);
