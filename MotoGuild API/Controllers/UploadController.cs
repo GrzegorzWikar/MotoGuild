@@ -1,16 +1,8 @@
-﻿using System.Net;
-using System.Net.Mime;
-using System.Text.Json;
-using AutoMapper;
-using Data;
+﻿using Data;
 using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MotoGuild_API.Dto.GroupDtos;
-using MotoGuild_API.Helpers;
-using MotoGuild_API.Repository.Interface;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+
 
 namespace MotoGuild_API.Controllers;
 
@@ -20,12 +12,10 @@ public class UploadController : ControllerBase
 {
 
     private IWebHostEnvironment _hostingEnvironment;
-    private MotoGuildDbContext _dbContext;
 
-    public UploadController(IWebHostEnvironment hostingEnvironment, MotoGuildDbContext dbContext)
+    public UploadController(IWebHostEnvironment hostingEnvironment)
     {
         _hostingEnvironment = hostingEnvironment;
-        _dbContext = dbContext;
     }
 
 
