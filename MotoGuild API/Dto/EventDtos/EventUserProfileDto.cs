@@ -8,7 +8,7 @@ namespace MotoGuild_API.Dto.EventDtos
         public string Name { get; set; }
         public UserDto Owner { get; set; }
         public string Place { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime Stop { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime StopDate { get; set; }
     }
 }
