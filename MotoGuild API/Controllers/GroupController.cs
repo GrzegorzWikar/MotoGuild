@@ -48,6 +48,10 @@ public class GroupController : ControllerBase
     {
         var userName = _loggedUserRepository.GetLoggedUserName();
         var group = _mapper.Map<Group>(createGroupDto);
+        if (group.GroupImage == "")
+        {
+            group.GroupImage = null;
+        }
         _groupRepository.Insert(group, userName);
         _groupRepository.Save();
         var groupDto = _mapper.Map<SelectedGroupDto>(group);
