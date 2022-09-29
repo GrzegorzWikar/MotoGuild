@@ -28,8 +28,9 @@ public class UploadController : ControllerBase
         _dbContext = dbContext;
     }
 
-    [HttpPost]
-    public IActionResult UploadImages()
+
+    [HttpPost ("{folderName}")]
+    public IActionResult UploadImages(string folderName)
     {
         try
         {
@@ -41,7 +42,7 @@ public class UploadController : ControllerBase
                     FileInfo fileInfo = new FileInfo(file.FileName);
                     var newfilename = "Image_" + DateTime.Now.Ticks + fileInfo.Extension;
                     var path = Path.Combine("",
-                        _hostingEnvironment.ContentRootPath + "\\Uploads\\GroupPictures\\" + newfilename);
+                        _hostingEnvironment.ContentRootPath + "\\Uploads\\" + folderName + "\\" + newfilename);
                     using (var stream = new FileStream(path, FileMode.Create))
                     {
                         file.CopyTo(stream);
@@ -64,11 +65,11 @@ public class UploadController : ControllerBase
     }
 
 
-    [HttpGet("{imageName}")]
-    public FileContentResult GetImageUpload(string imageName)
+    [HttpGet("{folderName}/{imageName}")]
+    public FileContentResult GetImageUpload(string folderName,string imageName)
     {
         string imagePath = Path.Combine("",
-            _hostingEnvironment.ContentRootPath + "\\Uploads\\GroupPictures\\" + imageName);
+            _hostingEnvironment.ContentRootPath + "\\Uploads\\"+folderName+"\\" + imageName);
         string[] ext = imagePath.Split(".");
 
         if (System.IO.File.Exists(imagePath))
@@ -85,12 +86,11 @@ public class UploadController : ControllerBase
     }
 
 
-    [HttpDelete("{imageName}")]
-    public IActionResult DeleteImageUpload(string imageName)
+    [HttpDelete("{folderName}/{imageName}")]
+    public IActionResult DeleteImageUpload(string folderName, string imageName)
     {
         string imagePath = Path.Combine("",
-            _hostingEnvironment.ContentRootPath + "\\Uploads\\GroupPictures\\" + imageName);
-        string[] ext = imagePath.Split(".");
+            _hostingEnvironment.ContentRootPath + "\\Uploads\\" + folderName + "\\" + imageName);
 
         if (System.IO.File.Exists(imagePath))
         {
