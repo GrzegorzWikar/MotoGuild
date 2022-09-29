@@ -19,10 +19,10 @@ namespace MotoGuild_API.Controllers;
 public class UploadController : ControllerBase
 {
 
-    private IHostingEnvironment _hostingEnvironment;
+    private IWebHostEnvironment _hostingEnvironment;
     private MotoGuildDbContext _dbContext;
 
-    public UploadController(IHostingEnvironment hostingEnvironment, MotoGuildDbContext dbContext)
+    public UploadController(IWebHostEnvironment hostingEnvironment, MotoGuildDbContext dbContext)
     {
         _hostingEnvironment = hostingEnvironment;
         _dbContext = dbContext;

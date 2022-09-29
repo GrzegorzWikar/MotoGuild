@@ -47,9 +47,14 @@ public class UserController : ControllerBase
         else
         {
             if (user == null) return NotFound();
+            foreach(var group in user.Groups)
+            {
+                group.Rating = group.Participants.Average(p => p.Rating);
+            }
             return Ok(_mapper.Map<UserProfileDto>(user));
         }
     }
+
 
     [HttpPost("register")]
     public IActionResult RegisterUser([FromBody] CreateUserDto createUserDto)

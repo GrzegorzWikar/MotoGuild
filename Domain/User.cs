@@ -22,5 +22,6 @@
         public ICollection<Ride> Rides { get; set; } 
         public ICollection<Ride> OwnedRides { get; set; } 
         public ICollection<Route> Routes { get; set; } 
+
     }
 }

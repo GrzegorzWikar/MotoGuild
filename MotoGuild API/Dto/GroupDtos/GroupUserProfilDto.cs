@@ -8,5 +8,7 @@ namespace MotoGuild_API.Dto.GroupDtos
         public string Name { get; set; }
         public UserDto Owner { get; set; }
         public DateTime? CreationDate { get; set; }
+        public double Rating { get; set; }
+      
     }
 }

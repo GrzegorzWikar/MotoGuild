@@ -26,6 +26,7 @@ public class UserRepository : IUserRepository
     {
         return _context.Users
             .Include(u => u.Groups).ThenInclude(g => g.Owner)
+            .Include(u => u.Groups).ThenInclude(g => g.Participants)
             .Include(u => u.OwnedGroups).ThenInclude(g => g.Owner)
             .Include(u => u.PendingGroups).ThenInclude(g => g.Owner)
             .Include(u => u.Events).ThenInclude(e => e.Owner)

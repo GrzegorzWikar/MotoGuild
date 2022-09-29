@@ -14,12 +14,8 @@ namespace MotoGuild_API.Dto.UserDtos
         public double Rating { get; set; }
         public string Image { get; set; }
         public ICollection<GroupUserProfilDto> Groups { get; set; }
-        public ICollection<GroupUserProfilDto> OwnedGroups { get; set; }
-        public ICollection<GroupUserProfilDto> PendingGroups { get; set; }
         public ICollection<EventUserProfileDto> Events { get; set; }
-        public ICollection<EventUserProfileDto> OwnedEvents { get; set; }
         public ICollection<RideUserProfileDto> Rides { get; set; }
-        public ICollection<RideUserProfileDto> OwnedRides { get; set; }
         public ICollection<RouteUserProfilDto> Routes { get; set; }
     }
 }
