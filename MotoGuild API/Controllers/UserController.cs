@@ -167,6 +167,12 @@ public class UserController : ControllerBase
         return Ok(userDto);
     }
 
+    [Authorize]
+    [HttpGet("loggedData")]
+    public IActionResult GetLoggedData()
+    {
+        return Ok(_loggedUserRepository.GetLoggedUserData());
+    }
 
     [HttpDelete("{id:int}")]
     public IActionResult DeleteUser(int id)
